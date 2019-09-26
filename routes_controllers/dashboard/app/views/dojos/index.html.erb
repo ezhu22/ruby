@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <TITLE>Dashboard</TITLE>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <h1>Listing <%= @num_of_dojo %> Dojos</h1>
+        <div class='jumbotron'>
+                <% flash.each do |key, value| %>
+                    <%= content_tag :div, value, class: "flash #{key}" %>
+                <% end %>
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th>Coding Dojo Branch</th>
+                        <th>Street</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @dojos.each do |dojo| %>
+                        <tr>
+                            <td><%= dojo.branch %></td>
+                            <td><%= dojo.street %></td>
+                            <td><%= dojo.city %></td>
+                            <td><%= dojo.state %></td>
+                            <td><a href='/dojos/<%= dojo.id %>/show'>Show</a> | <a href='/dojos/<%= dojo.id %>/edit'>Edit</a> | <a href='/dojos/<%= dojo.id %>' data-method="delete">Destroy</a></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+        <a href='/dojos/new'>Create New Dojo</a>
+    </body>
+</html>

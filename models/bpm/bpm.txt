@@ -1,0 +1,4 @@
+rails g model Comment commentable:references{polymorphic} content:text
+rake db:migrate
+in -> blog.rb, message.rb, post.rb, user.rb
+    has_many :comments, as: :commentable

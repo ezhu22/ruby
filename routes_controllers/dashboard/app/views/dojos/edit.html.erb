@@ -1,0 +1,44 @@
+
+<html>
+    <head>
+        <title>Dashboard</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class='container'>
+            <div class='row'>
+                <div class='col-4'>
+                        <h1>Edit <%= @dojo.branch %></h1>
+                        <% flash.each do |key, value| %>
+                            <%= content_tag :div, value, class: "flash #{key}" %>
+                        <% end %>
+                        <form class='form-group' action="/dojos/<%= @dojo.id %>" method='post'>
+                            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                            <input type="hidden" name="_method" value="patch">
+                            <tr>
+                                <td>Branch:</td>
+                                <td><input class="form-control" type='text' name='dojo[branch]' value="<%= @dojo.branch %>"></td>
+                            </tr>
+                            <tr>
+                                <td>Street:</td>
+                                <td><input class="form-control" type='text' name='dojo[street]' value="<%= @dojo.street %>"></td>
+                            </tr>
+                            <tr>
+                                <td>City:</td>
+                                <td><input class="form-control" type='text' name='dojo[city]' value="<%= @dojo.city %>"></td>
+                            </tr>
+                            <tr>
+                                <td>State:</td>
+                                <td><input class="form-control" type='text' name='dojo[state]' value="<%= @dojo.state %>"></td>
+                            </tr>
+                            <tr>
+                                <td colspan='2'><input class='my-3' type='submit' value='UPDATE'></td>
+                            </tr>
+                        </form>
+                        <p class='text-right'> <a href='/'>Home</a> | <a href='/dojos/<%= @dojo.id %>/show'>Show</a></p>
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
